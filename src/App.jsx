@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -8,7 +8,19 @@ import Cart from "./Cart";
 import Detail from "./Detail";
 
 export default function App() {
-  const [cart, setCart] = useState([]);
+  // set initial state by reading local storage.
+  // Wrapping it with a function makes it only run once
+  const [cart, setCart] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("cart")) ?? [];
+    } catch {
+      console.error("The cart could not be parsed into JSON.");
+      return [];
+    }
+  });
+
+  // any time the cart changes, store it in localstorage as a json string. Use cart as the key
+  useEffect(() => localStorage.setItem("cart", JSON.stringify(cart)), [cart]);
 
   function addToCart(id, sku) {
     setCart((items) => {
