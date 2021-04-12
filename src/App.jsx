@@ -6,6 +6,7 @@ import Products from "./Products";
 import { Routes, Route } from "react-router-dom";
 import Cart from "./Cart";
 import Detail from "./Detail";
+import Checkout from "./Checkout";
 
 export default function App() {
   // set initial state by reading local storage.
@@ -45,6 +46,10 @@ export default function App() {
     });
   }
 
+  function emptyCart() {
+    setCart([]);
+  }
+
   return (
     <>
       <div className="content">
@@ -60,6 +65,10 @@ export default function App() {
             <Route
               path="/cart"
               element={<Cart cart={cart} updateQuantity={updateQuantity} />}
+            />
+            <Route
+              path="/checkout"
+              element={<Checkout cart={cart} emptyCart={emptyCart} />}
             />
           </Routes>
         </main>
