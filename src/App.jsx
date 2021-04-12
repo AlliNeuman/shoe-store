@@ -6,6 +6,7 @@ import Products from "./Products";
 import { Routes, Route } from "react-router-dom";
 import Cart from "./Cart";
 import Detail from "./Detail";
+// import Detail from "./DetailRefs";
 import Checkout from "./Checkout";
 
 export default function App() {
