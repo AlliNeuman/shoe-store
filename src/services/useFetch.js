@@ -33,3 +33,12 @@ export default function useFetch(url) {
   }, [url]);
   return { data, error, loading };
 }
+
+// render prop pattern
+// create a component that accepts a prop called render
+// the component passes data/funcs to the render function
+// instead of children you can use render, children is used for using the children prop
+export function Fetch({ url, children }) {
+  const { data, loading, error } = useFetch(url);
+  return children(data, loading, error);
+}
